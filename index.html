@@ -293,11 +293,11 @@
 
   .section-tag {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 4px;
+    font-size: 16px;
+    letter-spacing: 3px;
     color: var(--red);
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .section-title {
@@ -522,13 +522,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     margin-top: 60px;
-  }
-
-  .programs-row2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    margin-top: 2px;
   }
 
   .program-card {
@@ -998,6 +991,66 @@
     text-transform: uppercase;
   }
 
+  /* MASTER CLASS PROTOCOLS */
+  #protocols {
+    padding: 120px 60px;
+    background: var(--off-white);
+  }
+
+  .protocols-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .protocol-card {
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-top: 3px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .protocol-card:hover { border-top-color: var(--red); box-shadow: 0 6px 24px rgba(0,0,0,0.06); }
+
+  .protocol-label {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .protocol-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .protocol-desc {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .protocol-examples {
+    font-size: 14px;
+    color: var(--warm-gray);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1024px) {
+    .protocols-grid { grid-template-columns: 1fr; }
+  }
+
   /* SCROLL ANIMATIONS */
   .reveal {
     opacity: 0;
@@ -1016,7 +1069,6 @@
     #mission, .science-layout, .schools-layout { grid-template-columns: 1fr; gap: 40px; }
     .modules-grid { grid-template-columns: 1fr 1fr; }
     .programs-grid { grid-template-columns: 1fr; }
-    .programs-row2 { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; }
     #pricing { padding: 80px 30px; }
     #hero, #mission, #curriculum, #science, #programs, #quote, #for-schools, #contact { padding: 80px 30px; }
@@ -1624,7 +1676,13 @@
     </li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#programs">Programs</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li class="nav-dropdown">
+      <a href="#pricing">Pricing ▾</a>
+      <div class="nav-dropdown-menu">
+        <a href="#pricing">Memberships</a>
+        <a href="#protocols">Master Class Protocols</a>
+      </div>
+    </li>
     <li><a href="#certified-schools">Certified Schools</a></li>
   </ul>
   <a href="login.html" class="nav-cta">Member Login</a>
@@ -1821,46 +1879,6 @@
       <p class="program-examples">Full scripts · Neuroscience education · Mat Chats · Student challenges · Parent handouts</p>
     </div>
   </div><!-- end programs-grid -->
-
-  <div class="reveal" id="protocols" style="text-align:center; margin:70px 0 24px;">
-    <p class="section-tag" style="color:var(--red);">Master Class Protocols</p>
-    <p style="font-family:'Crimson Pro',serif; font-size:17px; font-weight:300; color:rgba(255,255,255,0.55); max-width:560px; margin:0 auto; line-height:1.6;">Specialty one-time unlocks for specific classroom moments — purchased once, yours permanently, available on every plan.</p>
-  </div>
-
-  <div class="programs-row2">
-    <div class="program-card reveal">
-      <div class="program-label" style="font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px;">Combat Recovery</div>
-      <div class="program-label">Performance Reset</div>
-      <div class="program-title">Yips Protocol</div>
-      <p class="program-desc">A specialized reset sequence for athletes experiencing the yips — performance blocks, choking under pressure, or lost confidence after injury.</p>
-      <p class="program-examples">Mental Reset Sequence · Performance Block Recovery · Confidence Rebuilding · Pressure Training</p>
-      <p class="program-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$47</strong> · one-time unlock · available on every plan</p>
-    </div>
-    <div class="program-card reveal">
-      <div class="program-label" style="font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px;">Family Program</div>
-      <div class="program-label">Parent Integration</div>
-      <div class="program-title">MAKK Parent Workshop</div>
-      <p class="program-desc">When families use the same language as the dojo, the impact multiplies. MAKK equips parents to reinforce mindfulness practice at home — bridging the mat and the living room so students' growth doesn't stop when class ends.</p>
-      <p class="program-examples">Home Practice Guides · Parent Workshops · Family Communication Tools · Reinforcement Scripts · Progress Celebrations</p>
-      <p class="program-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$37</strong> · one-time unlock · available on every plan</p>
-    </div>
-    <div class="program-card reveal">
-      <div class="program-label" style="font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px;">Self-Defense Seminar</div>
-      <div class="program-label">Mindful Self-Defense</div>
-      <div class="program-title">DDKK Women's Self-Defense Seminar</div>
-      <p class="program-desc">A complete seminar script combining situational awareness, breathwork, and mindful self-defense principles for a women's self-defense event.</p>
-      <p class="program-examples">Situational Awareness · Breathwork Under Threat · Mindful Self-Defense Principles · Seminar Format</p>
-      <p class="program-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$47</strong> · one-time unlock · available on every plan</p>
-    </div>
-    <div class="program-card reveal">
-      <div class="program-label" style="font-size:8px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px;">Leadership Program</div>
-      <div class="program-label">Leadership Development</div>
-      <div class="program-title">Counterstrike Leadership Program</div>
-      <p class="program-desc">A curriculum for advanced students and instructor candidates who are ready to develop the mental discipline, strategic awareness, and leadership presence that separates good martial artists from great ones.</p>
-      <p class="program-examples">Warrior Mindset · Situational Awareness · Leading Under Pressure · Decision-Making Drills · Instructor Development</p>
-      <p class="program-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$57</strong> · one-time unlock · available on every plan</p>
-    </div>
-  </div><!-- end programs-row2 -->
 </section>
 
 <!-- QUOTE -->
@@ -2016,6 +2034,45 @@
   <p class="pricing-note">Cancel anytime · No setup fees · Instant library access upon enrollment · <a href="#protocols" style="color:var(--red);">Master Class Protocols</a> available as one-time add-ons on any plan</p>
 </section>
 
+<!-- MASTER CLASS PROTOCOLS -->
+<section id="protocols">
+  <div class="section-header reveal">
+    <p class="section-tag" style="color:var(--red)">Master Class Protocols</p>
+    <h2 class="section-title" style="color:var(--black);">Specialty Unlocks for<br>the Moments That Matter</h2>
+    <p class="section-body" style="max-width:580px; margin:0 auto; text-align:center; font-size:17px; color:var(--warm-gray);">One-time purchases for specific classroom moments — buy once, yours permanently, available on every plan.</p>
+  </div>
+  <div class="protocols-grid">
+    <div class="protocol-card reveal">
+      <div class="protocol-label" style="font-size:8px; letter-spacing:3px;">Combat Recovery · Performance Reset</div>
+      <div class="protocol-title">Yips Protocol</div>
+      <p class="protocol-desc">A specialized reset sequence for athletes experiencing the yips — performance blocks, choking under pressure, or lost confidence after injury.</p>
+      <p class="protocol-examples">Mental Reset Sequence · Performance Block Recovery · Confidence Rebuilding · Pressure Training</p>
+      <p class="protocol-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$47</strong> · one-time unlock · available on every plan</p>
+    </div>
+    <div class="protocol-card reveal">
+      <div class="protocol-label" style="font-size:8px; letter-spacing:3px;">Family Program · Parent Integration</div>
+      <div class="protocol-title">MAKK Parent Workshop</div>
+      <p class="protocol-desc">When families use the same language as the dojo, the impact multiplies. MAKK equips parents to reinforce mindfulness practice at home — bridging the mat and the living room so students' growth doesn't stop when class ends.</p>
+      <p class="protocol-examples">Home Practice Guides · Parent Workshops · Family Communication Tools · Reinforcement Scripts · Progress Celebrations</p>
+      <p class="protocol-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$37</strong> · one-time unlock · available on every plan</p>
+    </div>
+    <div class="protocol-card reveal">
+      <div class="protocol-label" style="font-size:8px; letter-spacing:3px;">Self-Defense Seminar · Mindful Self-Defense</div>
+      <div class="protocol-title">DDKK Women's Self-Defense Seminar</div>
+      <p class="protocol-desc">A complete seminar script combining situational awareness, breathwork, and mindful self-defense principles for a women's self-defense event.</p>
+      <p class="protocol-examples">Situational Awareness · Breathwork Under Threat · Mindful Self-Defense Principles · Seminar Format</p>
+      <p class="protocol-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$47</strong> · one-time unlock · available on every plan</p>
+    </div>
+    <div class="protocol-card reveal">
+      <div class="protocol-label" style="font-size:8px; letter-spacing:3px;">Leadership Program · Leadership Development</div>
+      <div class="protocol-title">Counterstrike Leadership Program</div>
+      <p class="protocol-desc">A curriculum for advanced students and instructor candidates who are ready to develop the mental discipline, strategic awareness, and leadership presence that separates good martial artists from great ones.</p>
+      <p class="protocol-examples">Warrior Mindset · Situational Awareness · Leading Under Pressure · Decision-Making Drills · Instructor Development</p>
+      <p class="protocol-examples" style="margin-top:12px; font-style:normal;"><strong style="color:var(--red);">$57</strong> · one-time unlock · available on every plan</p>
+    </div>
+  </div><!-- end protocols-grid -->
+</section>
+
 <!-- CERTIFIED SCHOOLS -->
 <section id="certified-schools" style="padding:120px 60px; background:var(--black);">
   <div class="section-header reveal">
@@ -2081,7 +2138,7 @@
   reveals.forEach(el => observer.observe(el));
 
   // Staggered module cards
-  document.querySelectorAll('.module-card, .program-card, .brain-stat').forEach((el, i) => {
+  document.querySelectorAll('.module-card, .program-card, .protocol-card, .brain-stat').forEach((el, i) => {
     el.style.transitionDelay = (i * 0.1) + 's';
   });
 </script>
