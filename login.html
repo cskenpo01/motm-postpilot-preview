@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Mindfulness on the Mats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  :root{
+    --red:#960000; --red-light:#fdf0f0; --red-border:rgba(150,0,0,0.15);
+    --black:#1a1a1a; --gray-dark:#444; --gray-mid:#888; --gray-light:#d8d8d8;
+    --bg-main:#f7f5f2; --border:#e8e3dd;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:var(--bg-main);
+    font-family:'Crimson Pro',serif; color:var(--black);
+    background-image:repeating-linear-gradient(45deg,rgba(150,0,0,0.025) 0,rgba(150,0,0,0.025) 2px,transparent 2px,transparent 14px),
+                      repeating-linear-gradient(-45deg,rgba(150,0,0,0.025) 0,rgba(150,0,0,0.025) 2px,transparent 2px,transparent 14px);
+    padding:24px;
+  }
+  .card{
+    width:100%; max-width:420px; background:#fff; border:1px solid var(--border);
+    border-radius:6px; box-shadow:0 12px 40px rgba(0,0,0,0.08); overflow:hidden;
+  }
+  .card-top{ height:6px; background:var(--red); }
+  .card-body{ padding:40px 36px 36px; }
+  .logo{ text-align:center; margin-bottom:28px; }
+  .logo-mark{ font-family:'Cinzel',serif; font-size:15px; font-weight:700; letter-spacing:3px; color:var(--red); text-transform:uppercase; }
+  .logo-sub{ font-family:'Cinzel',serif; font-size:9px; letter-spacing:3px; color:var(--gray-mid); text-transform:uppercase; margin-top:4px; }
+  h1{ font-family:'Cinzel',serif; font-size:16px; letter-spacing:1px; text-align:center; margin:0 0 26px; color:var(--black); font-weight:600; }
+  p.lead{ font-size:14px; color:var(--gray-dark); line-height:1.6; text-align:center; margin:0 0 22px; }
+  label{ display:block; font-family:'Cinzel',serif; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray-dark); margin-bottom:6px; }
+  input[type=email]{
+    width:100%; padding:11px 13px; margin-bottom:18px; border:1px solid var(--border); border-radius:4px;
+    font-family:'Crimson Pro',serif; font-size:15px; background:var(--bg-main);
+  }
+  input:focus{ outline:none; border-color:var(--red); }
+  button.primary{
+    width:100%; padding:13px; background:var(--red); color:#fff; border:none; border-radius:4px;
+    font-family:'Cinzel',serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:pointer;
+    transition:opacity .15s;
+  }
+  button.primary:hover{ opacity:.9; }
+  button.primary:disabled{ opacity:.5; cursor:default; }
+  .msg{ font-size:13px; text-align:center; margin-top:16px; line-height:1.5; }
+  .msg.error{ color:var(--red); }
+  .msg.ok{ color:#2d6a2d; }
+  .links{ text-align:center; margin-top:18px; }
+  .links a{ font-size:12px; color:var(--gray-dark); text-decoration:none; border-bottom:1px dotted var(--gray-mid); cursor:pointer; }
+  .links a:hover{ color:var(--red); border-color:var(--red); }
+
+  #fatal-error{ display:none; background:#fdf0f0; border:1px solid rgba(150,0,0,0.25); border-radius:4px; padding:14px 16px; margin-bottom:20px; color:#960000; font-size:13.5px; line-height:1.5; }
+
+  /* Check-your-email screen */
+  #sent-screen{ display:none; text-align:center; }
+  #sent-screen .big-icon{ font-size:36px; margin-bottom:14px; }
+
+  /* Consent screen */
+  #consent-screen{ display:none; }
+  #consent-screen h1{ text-align:left; margin-bottom:6px; }
+  .consent-intro{ font-size:14px; color:var(--gray-dark); line-height:1.6; margin-bottom:22px; }
+  .consent-item{
+    display:flex; gap:12px; align-items:flex-start; padding:14px; border:1px solid var(--border);
+    border-left:3px solid var(--red); border-radius:4px; margin-bottom:12px; background:var(--red-light);
+  }
+  .consent-item input[type=checkbox]{ margin-top:3px; width:16px; height:16px; accent-color:var(--red); flex-shrink:0; }
+  .consent-item .consent-text{ font-size:13.5px; line-height:1.55; color:var(--black); }
+  .consent-item .consent-text a{ color:var(--red); }
+  #consent-error{ display:none; color:var(--red); font-size:13px; margin-bottom:14px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-top"></div>
+  <div class="card-body">
+
+    <div class="logo">
+      <div class="logo-mark">Mindfulness on the Mats</div>
+      <div class="logo-sub">Member Library</div>
+    </div>
+
+    <div id="fatal-error"></div>
+
+    <!-- SIGN-IN SCREEN: email only, no password -->
+    <div id="signin-screen">
+      <h1>Sign In</h1>
+      <p class="lead">Enter your email and we'll send you a secure sign-in link — no password needed.</p>
+      <form id="signin-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" autocomplete="email" required>
+        <button type="submit" class="primary" id="signin-btn">Send Sign-In Link</button>
+      </form>
+      <div class="msg" id="signin-msg"></div>
+    </div>
+
+    <!-- CHECK-YOUR-EMAIL SCREEN -->
+    <div id="sent-screen">
+      <div class="big-icon">✉️</div>
+      <h1>Check Your Email</h1>
+      <p class="lead">We sent a sign-in link to <strong id="sent-email"></strong>. Click the link in that email on this device to continue — this window can stay open.</p>
+      <div class="links"><a id="resend-link">Didn't get it? Send again</a></div>
+      <div class="msg" id="sent-msg"></div>
+    </div>
+
+    <!-- CONSENT SCREEN (shown after the magic link is confirmed, if not yet agreed to current version) -->
+    <div id="consent-screen">
+      <h1>Before You Continue</h1>
+      <p class="consent-intro">Please review and agree to the following before accessing the Library. These only need to be confirmed once, unless our terms change.</p>
+
+      <div id="consent-error">Please check all three boxes to continue.</div>
+
+      <div class="consent-item">
+        <input type="checkbox" id="consent-tos">
+        <div class="consent-text">I have read and agree to the <strong>Membership Agreement &amp; Terms of Service</strong>.</div>
+      </div>
+
+      <div class="consent-item">
+        <input type="checkbox" id="consent-disclaimer">
+        <div class="consent-text">I understand Mindfulness on the Mats™ is an <strong>educational curriculum, not therapy, counseling, medical treatment, or mental health services</strong>, and that I should seek a licensed mental health professional for concerns beyond the scope of this curriculum.</div>
+      </div>
+
+      <div class="consent-item">
+        <input type="checkbox" id="consent-license">
+        <div class="consent-text">I understand MOTM Content is <strong>licensed for my instructional use only</strong> and may not be copied, sold, shared, or redistributed.</div>
+      </div>
+
+      <button type="button" class="primary" id="consent-btn">I Agree &amp; Continue</button>
+      <div class="msg" id="consent-msg"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  // --- Configuration -----------------------------------------------------
+  const SUPABASE_URL = 'https://ngrgxkdmxtimrjdkhcno.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ncmd4a2RteHRpbXJqZGtoY25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0MzExMTcsImV4cCI6MjA5OTAwNzExN30.oPpUqewNxx_eSXcQu3D_q9_Nph3Qa-wtdP3KLVw1uJQ';
+  // Bump this whenever the Membership Agreement / Terms of Service document changes.
+  // Members who already agreed to an older version will be asked to re-agree.
+  const TOS_VERSION = 'v2';
+  const DASHBOARD_URL = 'dashboard.html';
+  // The magic-link email sends people back to this exact page. Once this file is hosted
+  // at a real address, that address MUST also be added under Supabase ->
+  // Authentication -> URL Configuration -> Redirect URLs, or Supabase will reject it.
+  const EMAIL_REDIRECT_TO = window.location.href.split('#')[0].split('?')[0];
+
+  function fatal(message){
+    const el = document.getElementById('fatal-error');
+    el.textContent = message;
+    el.style.display = 'block';
+  }
+
+  if (typeof supabase === 'undefined') {
+    fatal('This page could not load a required script (probably a connection issue). Please check your internet connection and reload this page.');
+    return;
+  }
+
+  let sb;
+  try {
+    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } catch (e) {
+    fatal('This page failed to start up. Please reload it. If this keeps happening, contact support.');
+    return;
+  }
+
+  const signinScreen = document.getElementById('signin-screen');
+  const sentScreen = document.getElementById('sent-screen');
+  const consentScreen = document.getElementById('consent-screen');
+  const signinMsg = document.getElementById('signin-msg');
+  const sentMsg = document.getElementById('sent-msg');
+  const consentMsg = document.getElementById('consent-msg');
+  const consentError = document.getElementById('consent-error');
+
+  function showError(el, text){ el.textContent = text; el.className = 'msg error'; }
+  function showOk(el, text){ el.textContent = text; el.className = 'msg ok'; }
+  function showOnly(screen){
+    [signinScreen, sentScreen, consentScreen].forEach(s => s.style.display = (s === screen ? 'block' : 'none'));
+  }
+
+  async function sendLink(email){
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: EMAIL_REDIRECT_TO }
+    });
+    return error;
+  }
+
+  // --- Sign in: request the magic link --------------------------------------
+  document.getElementById('signin-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('signin-btn');
+    btn.disabled = true;
+    signinMsg.textContent = '';
+
+    try {
+      const email = document.getElementById('email').value.trim();
+      const error = await sendLink(email);
+
+      if (error) {
+        showError(signinMsg, error.message || 'Could not send the sign-in link. Please try again.');
+        return;
+      }
+
+      document.getElementById('sent-email').textContent = email;
+      window.__motmLastEmail = email;
+      showOnly(sentScreen);
+    } catch (err) {
+      showError(signinMsg, 'Something went wrong. Please try again.');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  document.getElementById('resend-link').addEventListener('click', async () => {
+    const email = window.__motmLastEmail;
+    if (!email) { showOnly(signinScreen); return; }
+    sentMsg.textContent = '';
+    try {
+      const error = await sendLink(email);
+      if (error) showError(sentMsg, error.message || 'Could not resend. Please try again.');
+      else showOk(sentMsg, 'Sent again — check your inbox.');
+    } catch (err) {
+      showError(sentMsg, 'Something went wrong. Please try again.');
+    }
+  });
+
+  // --- After a session exists (magic link confirmed, or already signed in):
+  // check consent status, then either show consent screen or go straight in. ----
+  async function afterSignIn() {
+    try {
+      const { data: { user } } = await sb.auth.getUser();
+      if (!user) { showOnly(signinScreen); return; }
+
+      const { data: events, error } = await sb
+        .from('consent_events')
+        .select('consent_type')
+        .eq('document_version', TOS_VERSION);
+
+      if (error) {
+        showOnly(signinScreen);
+        showError(signinMsg, 'Could not verify your account status. Please try signing in again.');
+        return;
+      }
+
+      const agreedTypes = new Set((events || []).map(r => r.consent_type));
+      const needsConsent = !agreedTypes.has('tos') || !agreedTypes.has('not_therapy_disclaimer') || !agreedTypes.has('content_license');
+
+      if (needsConsent) {
+        showOnly(consentScreen);
+      } else {
+        enterLibrary();
+      }
+    } catch (err) {
+      showOnly(signinScreen);
+      showError(signinMsg, 'Something went wrong. Please try signing in again.');
+    }
+  }
+
+  // --- Consent screen --------------------------------------------------------
+  document.getElementById('consent-btn').addEventListener('click', async () => {
+    const tos = document.getElementById('consent-tos').checked;
+    const disclaimer = document.getElementById('consent-disclaimer').checked;
+    const license = document.getElementById('consent-license').checked;
+
+    if (!tos || !disclaimer || !license) {
+      consentError.style.display = 'block';
+      return;
+    }
+    consentError.style.display = 'none';
+
+    const btn = document.getElementById('consent-btn');
+    btn.disabled = true;
+    consentMsg.textContent = '';
+
+    try {
+      const calls = [
+        sb.rpc('record_consent', { p_consent_type: 'tos', p_document_version: TOS_VERSION }),
+        sb.rpc('record_consent', { p_consent_type: 'not_therapy_disclaimer', p_document_version: TOS_VERSION }),
+        sb.rpc('record_consent', { p_consent_type: 'content_license', p_document_version: TOS_VERSION }),
+      ];
+      const results = await Promise.all(calls);
+      const failed = results.find(r => r.error);
+      if (failed) throw failed.error;
+
+      enterLibrary();
+    } catch (err) {
+      btn.disabled = false;
+      showError(consentMsg, 'Could not save your agreement. Please try again.');
+    }
+  });
+
+  // --- Redirect into the dashboard -------------------------------------------
+  function enterLibrary() {
+    window.location.href = DASHBOARD_URL;
+  }
+
+  // On load: if a magic link just completed (or a session already exists), continue
+  // straight into the consent/dashboard check. Otherwise show the sign-in form.
+  (async () => {
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session) { await afterSignIn(); }
+      else { showOnly(signinScreen); }
+    } catch (err) {
+      fatal('This page failed to start up. Please reload it. If this keeps happening, contact support.');
+    }
+  })();
+})();
+</script>
+</body>
+</html>
