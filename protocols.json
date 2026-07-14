@@ -1,0 +1,36 @@
+{
+  "protocols": [
+    {
+      "key": "yips",
+      "icon": "🎯",
+      "title": "Yips Protocol",
+      "theme": "Overcoming Performance Blocks and the Yips",
+      "price_cents": 4700,
+      "file": "Protocols/MOTM_Yips_Protocol_v8.pdf"
+    },
+    {
+      "key": "makk",
+      "icon": "👨‍👩‍👧",
+      "title": "MAKK Parent Workshop",
+      "theme": "Mindful Awareness for Kenpo Kids — Parent Workshop",
+      "price_cents": 3700,
+      "file": "Protocols/MOTM_MAKK_Parent_Workshop_v2.pdf"
+    },
+    {
+      "key": "ddkk",
+      "icon": "🛡️",
+      "title": "DDKK Women's Self-Defense Seminar",
+      "theme": "Mindful Women's Self-Defense Facilitator Guide",
+      "price_cents": 4700,
+      "file": "Protocols/MOTM_Mindful_Womens_Self_Defense_Facilitator_Guide.pdf"
+    },
+    {
+      "key": "counterstrike",
+      "icon": "⚡",
+      "title": "Counterstrike Leadership Program",
+      "theme": "Leadership Development Through Martial Arts",
+      "price_cents": 5700,
+      "file": "Protocols/COUNTERSTRIKE_LEADERSHIP_PROGRAM_v2.pdf"
+    }
+  ]
+}

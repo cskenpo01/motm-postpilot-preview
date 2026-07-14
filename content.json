@@ -1,0 +1,110 @@
+{
+  "modules": [
+    {
+      "id": "intro",
+      "label": "INTRODUCTION",
+      "roman": "00",
+      "month": 0,
+      "icon": "📖",
+      "intro": "Read this portion before you introduce the scripts to your students. This section gives some background about the curriculum, why it works, and how to deliver it confidently in your school.",
+      "scripts": [
+        {
+          "key": "s1",
+          "icon": "📖",
+          "title": "Onboarding Guide",
+          "theme": "Your Foundation Before Month 1",
+          "file": "Introduction/MOTM_00_Onboarding_Guide.pdf"
+        }
+      ],
+      "challenges": null,
+      "yw": null
+    },
+    {
+      "id": "breath",
+      "label": "BREATH",
+      "roman": "I",
+      "month": 1,
+      "icon": "🌬️",
+      "intro": "The foundation of the mindful warrior. Students learn to harness the breath as a tool for focus, emotional regulation, and energy management. Run one script per class at the opening or close of class (3–5 minutes).",
+      "scripts": [
+        { "key": "s1", "icon": "🌬️", "title": "Finding the Breath", "theme": "Awareness of the Breath", "file": "Module_I_BREATH/Script_1_Finding_the_Breath.pdf" },
+        { "key": "s2", "icon": "🌬️", "title": "Belly Breathing", "theme": "Diaphragmatic Breathing", "file": "Module_I_BREATH/Script_2_Belly_Breathing.pdf" },
+        { "key": "s3", "icon": "🌬️", "title": "Box Breathing", "theme": "4-Count Tactical Breathing", "file": "Module_I_BREATH/Script_3_Box_Breathing.pdf" },
+        { "key": "s4", "icon": "🌬️", "title": "Warrior's Bellows", "theme": "Energizing Breath", "file": "Module_I_BREATH/Script_4_Warriors_Bellows.pdf" },
+        { "key": "s5", "icon": "🌬️", "title": "Long Exhale", "theme": "Calming the Nervous System", "file": "Module_I_BREATH/Script_5_Long_Exhale.pdf" }
+      ],
+      "challenges": { "file": "Module_I_BREATH/Curriculum_Application_and_Challenges.pdf" },
+      "yw": { "file": "Module_I_BREATH/Young_Warriors_Curriculum.pdf" }
+    },
+    {
+      "id": "body",
+      "label": "BODY",
+      "roman": "II",
+      "month": 2,
+      "icon": "⚔️",
+      "intro": "Students develop proprioceptive awareness — learning to scan the body for tension, find physical grounding, and align their structure for power and presence.",
+      "scripts": [
+        { "key": "s1", "icon": "⚔️", "title": "Scanning the Armor", "theme": "Body Awareness and Proprioception", "file": "Module_II_BODY/Script_1_Scanning_the_Armor.pdf" },
+        { "key": "s2", "icon": "⚔️", "title": "Finding Your True Center", "theme": "Balance and Alignment", "file": "Module_II_BODY/Script_2_Finding_Your_True_Center.pdf" },
+        { "key": "s3", "icon": "⚔️", "title": "The Clenched Fist", "theme": "Emotional and Behavioral Regulation", "file": "Module_II_BODY/Script_3_The_Clenched_Fist.pdf" },
+        { "key": "s4", "icon": "⚔️", "title": "The Iron Root", "theme": "Stability and Grounding Visualization", "file": "Module_II_BODY/Script_4_The_Iron_Root.pdf" },
+        { "key": "s5", "icon": "⚔️", "title": "The Puppet Master", "theme": "Posture and Structure", "file": "Module_II_BODY/Script_5_The_Puppet_Master.pdf" }
+      ],
+      "challenges": { "file": "Module_II_BODY/Curriculum_Application_and_Challenges.pdf" },
+      "yw": { "file": "Module_II_BODY/Young_Warriors_Curriculum.pdf" }
+    },
+    {
+      "id": "mind",
+      "label": "MIND",
+      "roman": "III",
+      "month": 3,
+      "icon": "🧠",
+      "intro": "Students explore Zanshin (total awareness) and Mushin (no mind) — the mental states that allow a martial artist to react without hesitation, free from distraction or self-judgment.",
+      "scripts": [
+        { "key": "s1", "icon": "🧠", "title": "The Open Guard", "theme": "Mushin — The Empty Mind", "file": "Module_III_MIND/Script_1_The_Open_Guard.pdf" },
+        { "key": "s2", "icon": "🧠", "title": "360 Degree Guard", "theme": "Zanshin — Total Awareness", "file": "Module_III_MIND/Script_2_360_Degree_Guard.pdf" },
+        { "key": "s3", "icon": "🧠", "title": "Mental Reset", "theme": "Clearing the Mind Between Rounds", "file": "Module_III_MIND/Script_3_Mental_Reset.pdf" },
+        { "key": "s4", "icon": "🧠", "title": "Shadow Battle", "theme": "Visualisation Training", "file": "Module_III_MIND/Script_4_Shadow_Battle.pdf" },
+        { "key": "s5", "icon": "🧠", "title": "Inner Replay", "theme": "Mindful Post-Training Review", "file": "Module_III_MIND/Script_5_Inner_Replay.pdf" }
+      ],
+      "challenges": { "file": "Module_III_MIND/Curriculum_Application_and_Challenges.pdf" },
+      "yw": { "file": "Module_III_MIND/Young_Warriors_Curriculum.pdf" }
+    },
+    {
+      "id": "spirit",
+      "label": "SPIRIT",
+      "roman": "IV",
+      "month": 4,
+      "icon": "🔥",
+      "intro": "The culminating module. Students access the flow state — moving with intuition, purpose, and equanimity. This module ties together all four pillars of the Mindful Warrior.",
+      "scripts": [
+        { "key": "s1", "icon": "🔥", "title": "Finding Your Flow", "theme": "The Flow State", "file": "Module_IV_SPIRIT/Script_1_Finding_Your_Flow.pdf" },
+        { "key": "s2", "icon": "🔥", "title": "Warrior's Why", "theme": "Purpose and Motivation", "file": "Module_IV_SPIRIT/Script_2_Warriors_Why.pdf" },
+        { "key": "s3", "icon": "🔥", "title": "The River", "theme": "Equanimity and Acceptance", "file": "Module_IV_SPIRIT/Script_3_The_River.pdf" },
+        { "key": "s4", "icon": "🔥", "title": "Inner Bow", "theme": "Respect and Self-Compassion", "file": "Module_IV_SPIRIT/Script_4_Inner_Bow.pdf" },
+        { "key": "s5", "icon": "🔥", "title": "Eye of the Storm", "theme": "Stillness Under Pressure", "file": "Module_IV_SPIRIT/Script_5_Eye_of_the_Storm.pdf" }
+      ],
+      "challenges": { "file": "Module_IV_SPIRIT/Curriculum_Application_and_Challenges.pdf" },
+      "yw": { "file": "Module_IV_SPIRIT/Young_Warriors_Curriculum.pdf" }
+    },
+    {
+      "id": "resources",
+      "label": "INSTRUCTOR RESOURCES",
+      "roman": "05",
+      "month": 0,
+      "icon": "🗂️",
+      "intro": "Your complete companion pack for every class.",
+      "scripts": [
+        {
+          "key": "s1",
+          "icon": "🗂️",
+          "title": "Instructor Resource Pack",
+          "theme": "Cheat Sheet, Parent Handout, Troubleshooting & More",
+          "file": "Instructor_Resources/MOTM_05_Instructor_Resource_Pack.pdf"
+        }
+      ],
+      "challenges": null,
+      "yw": null
+    }
+  ]
+}
